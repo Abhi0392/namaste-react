@@ -1,0 +1,23 @@
+{
+  "name": "firstapp",
+  "version": "1.0.0",
+  "description": "This is the first app from Namaste react course",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "author": "\"Abhishek\"",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.16.0"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "browserslist": [
+    "last 2 chrome version",
+    "last 2 firefox version"
+  ]
+}
