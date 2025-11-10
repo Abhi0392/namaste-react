@@ -1,27 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div>
-        <img
-          className="logo"
-          src="https://img.freepik.com/premium-vector/beautiful-unique-logo-design-food-restaurant-company_1314480-1082.jpg?w=2000"
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
 const resList = [
   {
     card: {
@@ -1322,57 +1298,4 @@ const resList = [
     },
   },
 ];
-
-const RestaruntCard = (props) => {
-  const { resData } = props;
-  console.log("resData", resData);
-  const { name, avgRating, cuisines, sla } = resData?.card?.card?.info;
-  console.log("obj", resData);
-  return (
-    <div className="res-card">
-      <img
-        className="food1"
-        alt="res-img"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          resData?.card?.card?.info?.cloudinaryImageId
-        }
-      ></img>
-      {/* <h3>Karavali Tindi</h3>
-      <h4>South Inidan, North Indian, Chinese</h4>
-      <h4>5 stars</h4>
-      <h4>30 min</h4> */}
-      <h3>{name}</h3>
-      <h4>{cuisines.join(" ,")}</h4>
-      <h4>{avgRating.String}</h4>
-      <h4>{sla.slaString}</h4>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {resList?.map((restraunt) => (
-          <RestaruntCard
-            key={restraunt?.card?.card?.info?.id}
-            resData={restraunt}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+export default resList;
