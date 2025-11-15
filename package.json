@@ -10,11 +10,14 @@
   "author": "\"Abhishek\"",
   "license": "ISC",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.16.1"
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^6.22.0"
   },
   "browserslist": [
     "last 2 chrome version",
