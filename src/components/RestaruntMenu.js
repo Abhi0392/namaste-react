@@ -1,34 +1,45 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 import axios from "axios";
 
-const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    const data = fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9745385&lng=77.6805538&restaurantId=613822"
-    );
-    const response = await data.json();
-    setResInfo(response);
-  };
-  console.log("Restaurant Menu Info:", resInfo);
+const RestaruntMenu = () => {
+  const [resData, setResData] = useState();
+  const [resItem, setResItem] = useState();
+  const [category, setCategory] = useState([]);
+  const [showItems, setShowItems] = useState(false);
+  const [showIndex, setShowIndex] = useState(null);
+  const { resId } = useParams();
 
+  const resInfo = useRestaurantMenu(resId);
+  const restaurantData = resInfo?.cards[2]?.card?.card?.info;
+  const resMenuItem =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card
+      ?.itemCards;
+  const itemCategory =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  const { name, cuisines } = restaurantData || {};
   return resInfo === null ? (
     <Shimmer />
   ) : (
-    <div className="menu">
-      {/* <h1>{resInfo?.cards[0]?.card?.card?.info}</h1> */}
-      <h1>Name of the Restaurant</h1>
-      <h2>Menu</h2>
-      <ul>
-        <li>Biryani </li>
-        <li>Burgers</li>
-        <li>Diet </li>
-      </ul>
+    <div className="text-center">
+      <h1 className="font-bold m-6 text-2xl">{name}</h1>
+      <p className="font-semibold text-lg">{(cuisines || []).join(", ")}</p>
+      {itemCategory?.map((c, index) => (
+        <RestaurantCategory
+          key={index}
+          data={c?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+        />
+      ))}
     </div>
   );
 };
-export default RestaurantMenu;
+export default RestaruntMenu;

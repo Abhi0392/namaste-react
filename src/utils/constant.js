@@ -4,4 +4,6 @@ const IMAGE_URL =
 const LOGO_URL =
   "https://img.freepik.com/premium-vector/beautiful-unique-logo-design-food-restaurant-company_1314480-1082.jpg?w=2000";
 
-export { IMAGE_URL, LOGO_URL };
+const RESTAURANT_URL = "https://namastedev.com/api/v1/listRestaurantMenu/";
+
+export { IMAGE_URL, LOGO_URL, RESTAURANT_URL };
