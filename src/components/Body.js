@@ -46,7 +46,7 @@ const Body = () => {
   };
   const handleButtonClcik = () => {
     const filteredRestruantList = listOfRestraunt.filter((item) => {
-      return item?.avgRating > 4;
+      return item?.avgRating > 4.2;
     });
     setListOfRestraunt(filteredRestruantList);
     setIsFiltered(true);
@@ -72,6 +72,7 @@ const Body = () => {
         <div className="search m-4 p-4">
           <input
             type="text"
+            data-testid="searchInput"
             className="border border-solid  border-black p-2 "
             onChange={inputChange}
             value={searchText}

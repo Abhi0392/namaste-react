@@ -5,7 +5,10 @@ const RestaruntCard = (props) => {
   const { name, avgRating, cuisines = [], sla = {}, cloudinaryImageId } = info;
   return (
     <>
-      <div className="m-4 p-4 w-[250px] border border-sloid bg-gray-200 rounded-lg hover:bg-purple-200">
+      <div
+        data-testid="resCard"
+        className="m-4 p-4 w-[250px] border border-sloid bg-gray-200 rounded-lg hover:bg-purple-200"
+      >
         <img
           className="rounded-lg"
           alt="res-img"
